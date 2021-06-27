@@ -1,2 +1,2 @@
-# CPUMemMonitor
-A CPU and Memory usage monitor made of Arduino
+# ArduinoProjects
+Some of my Arduino programs, including hardware tests and projects.
