@@ -3,9 +3,12 @@ LiquidCrystal_I2C scr(0x27, 16, 2);
 
 int percentCPU = 0;
 int percentMem = 0;
+int blockCPU = 0;
+int blockMem = 0;
+int remainedLinesCPU = 0;
+int remainedLinesMem = 0;
 String serialData;
 char serialCharacter;
-//bool completeSerial = false;
 byte block1[8] = {0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10};
 byte block2[8] = {0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18};
 byte block3[8] = {0x1C, 0x1C, 0x1C, 0x1C, 0x1C, 0x1C, 0x1C, 0x1C};
@@ -22,15 +25,11 @@ void setup() {
   scr.createChar(2, block3);
   scr.createChar(3, block4);
   scr.createChar(4, block5);
-  //  scr.cursor();
   printBasic();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  //  serialData = readSerial();
-  //  Serial.print("Serial Data: ");
-  //  Serial.println(serialData);
   bool completeSerial = false;
   serialData = "";
   //printBasic();
@@ -49,12 +48,18 @@ void loop() {
     }
   }
   splitStringAndToInt(serialData, ",");
-  int blockCPU = translateCPUIntoBlock(percentCPU);
-  int blockMem = translateMemIntoBlock(percentMem);
   printPercentCPU(percentCPU);
   printPercentMem(percentMem);
-  printBlockMem(blockMem);
-  printBlockCPU(blockCPU);
+  processBlockCPU(percentCPU);
+  processBlockMem(percentMem);
+  int charNumCPU = getCharNum(remainedLinesCPU);
+  int charNumMem = getCharNum(remainedLinesMem);
+  Serial.print("charNumCPU: ");
+  Serial.println(charNumCPU);
+  Serial.print("charNumMem: ");
+  Serial.println(charNumMem);
+  printBlock(blockCPU, charNumCPU, 0);
+  printBlock(blockMem, charNumMem, 1);
 }
 
 void splitStringAndToInt(String inString, String separator) {
@@ -62,68 +67,51 @@ void splitStringAndToInt(String inString, String separator) {
   //  Serial.print(commaIndex);
   String str1 = inString.substring(0, commaIndex);
   String str2 = inString.substring(commaIndex + 1);
-  //  Serial.print("str1:");
-  //  Serial.println(str1);
-  //  Serial.print("str2:");
-  //  Serial.println(str2);
+    Serial.print("str1:");
+    Serial.println(str1);
+    Serial.print("str2:");
+    Serial.println(str2);
   percentCPU = str1.toInt();
   percentMem = str2.toInt();
 }
 
-int translateCPUIntoBlock(int valueCPU) {
-  blockCPU = valueCPU / 15;
-  return blockCPU;
-}
-
-int translateMemIntoBlock(int valueMem) {
-  blockMem = valueMem / 15;
-  return blockMem;
-}
-
-String readSerial() {
-  String receivedString;
-  char singleChar;
-  while (Serial.available()) {
-    singleChar = Serial.read();
-    if (singleChar != "\n") {
-      receivedString += singleChar;
-    } else {
-      break;
-    }
-  }
-  if (receivedString.length() > 0) {
-    //    Serial.print("receivedString:");
-    //    return receivedString;
-  } else {
-    return "nothing";
-  }
-}
-
-void printBlockCPU(int blockCPU) {
-  resetBarCPU();
-  scr.setCursor(5, 0);
+void printBlock(int blockPartial, int charNumPartial, int row) {
+  resetBar(row);
+  scr.setCursor(1, row);
   int i = 0;
-  for (i; i < blockCPU; i++) {
+  for (i; i < blockPartial; i++) {
     scr.write(byte(4));
   }
-}
-
-void printBlockMem(int blockMem) {
-  resetBarMem();
-  scr.setCursor(5, 1);
-  int j = 0;
-  for (j; j < blockMem; j++) {
-    scr.write(byte(4));
+  if (charNumPartial != -1) {
+    scr.write(byte(charNumPartial));
   }
 }
 
 void processBlockCPU(int percentCPUPartial) {
-  int blockNum = translateCPUIntoBlock(percentCPUPartial);
-  
+  int totalLines = percentCPUPartial / 2;
+  blockCPU = totalLines / 5;
+//  Serial.print("totalLines: ");
+//  Serial.println(totalLines);
+  int blockCPUx5 = blockCPU * 5;
+  remainedLinesCPU = totalLines - blockCPUx5;
+}
+
+void processBlockMem(int percentMemPartial) {
+  int totalLines = percentMemPartial / 2;
+  blockMem = totalLines / 5;
+  int blockMemx5 = blockMem * 5;
+//  Serial.print("totalLines: ");
+//  Serial.println(totalLines);
+  remainedLinesMem = totalLines - blockMemx5;
+}
+
+int getCharNum(int lines) {
+  int charNum = lines - 1;
+  return charNum;
 }
 
 void printPercentCPU(int percentCPUPartial) {
-  resetCPUPercent();
+  resetPercent(0);
   String percentCPUString = String(percentCPUPartial);
   int digits = percentCPUString.length();
   switch (digits) {
@@ -141,7 +129,7 @@ void printPercentCPU(int percentCPUPartial) {
 }
 
 void printPercentMem(int percentMemPartial) {
-  resetMemPercent();
+  resetPercent(1);
   String percentMemString = String(percentMemPartial);
   int digits = percentMemString.length();
   switch (digits) {
@@ -161,35 +149,25 @@ void printPercentMem(int percentMemPartial) {
 void printBasic() {
   scr.clear();
   scr.setCursor(0, 0);
-  scr.print("CPU:[");
+  scr.print("[");
   scr.setCursor(11, 0);
   scr.print("]");
   scr.setCursor(15, 0);
   scr.print("%");
   scr.setCursor(0, 1);
-  scr.print("Mem:[");
+  scr.print("[");
   scr.setCursor(11, 1);
   scr.print("]");
   scr.setCursor(15, 1);
   scr.print("%");
 }
 
-void resetBarCPU() {
-  scr.setCursor(5, 0);
-  scr.print("      ");
+void resetBar(int row) {
+  scr.setCursor(1, row);
+  scr.print("          ");
 }
 
-void resetBarMem() {
-  scr.setCursor(5, 1);
-  scr.print("      ");
-}
-
-void resetCPUPercent() {
-  scr.setCursor(12, 0);
-  scr.print("   ");
-}
-
-void resetMemPercent() {
-  scr.setCursor(12, 1);
+void resetPercent(int row) {
+  scr.setCursor(12, row);
   scr.print("   ");
 }
