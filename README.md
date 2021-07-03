@@ -7,4 +7,5 @@
 * [Drinker](https://github.com/yangshunhuai/ArduinoProjects/tree/main/projects/Drinker)
 
 ## 完成的项目
+* [CPUMemMonitor](https://github.com/yangshunhuai/ArduinoProjects/tree/main/projects/CPUMemMonitor)
 * [simple-clock](https://github.com/yangshunhuai/ArduinoProjects/tree/main/projects/simple-clock)
