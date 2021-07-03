@@ -8,4 +8,5 @@
 
 ## 完成的项目
 * [CPUMemMonitor](https://github.com/yangshunhuai/ArduinoProjects/tree/main/projects/CPUMemMonitor)
+* [sinple-clock-with-dht](https://github.com/yangshunhuai/ArduinoProjects/tree/main/projects/simple-clock-with-dht)
 * [simple-clock](https://github.com/yangshunhuai/ArduinoProjects/tree/main/projects/simple-clock)
