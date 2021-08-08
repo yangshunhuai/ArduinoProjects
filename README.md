@@ -2,7 +2,10 @@
 我的Arduino项目，包括硬件测试和其它程序。
 
 ## 正在进行的项目
-* [Lift](https://github.com/yangshunhuai/ArduinoProjects/tree/main/projects/Lift)
+
+* [ESP8266Watch](https://github.com/yangshunhuai/ESP8266Watch)
+  
+  由于本项目较大，单独设仓库存放。
 
 ## 鸽了的项目
 
