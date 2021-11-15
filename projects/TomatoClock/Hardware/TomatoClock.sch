@@ -1,0 +1,139 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Notes 7350 7500 0    50   Italic 10
+TomatoClock
+Text Notes 8150 7650 0    50   ~ 0
+2021/11/14
+$Comp
+L MCU_Microchip_ATmega:ATmega328P-PU U1
+U 1 1 619084B6
+P 1800 2650
+F 0 "U1" H 1400 1200 50  0000 R CNN
+F 1 "ATmega328P-PU" H 1700 1100 50  0000 R CNN
+F 2 "Package_DIP:DIP-28_W7.62mm" H 1800 2650 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20with%20picoPower%20Technology%20Data%20Sheet%2040001984A.pdf" H 1800 2650 50  0001 C CNN
+	1    1800 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0101
+U 1 1 6190BA27
+P 1850 1000
+F 0 "#PWR0101" H 1850 850 50  0001 C CNN
+F 1 "+3V3" H 1865 1173 50  0000 C CNN
+F 2 "" H 1850 1000 50  0001 C CNN
+F 3 "" H 1850 1000 50  0001 C CNN
+	1    1850 1000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 1000 1800 1000
+Wire Wire Line
+	1800 1000 1800 1150
+Wire Wire Line
+	1850 1000 1900 1000
+Wire Wire Line
+	1900 1000 1900 1150
+Connection ~ 1850 1000
+$Comp
+L Device:Crystal Y1
+U 1 1 6190ABF5
+P 2950 2100
+F 0 "Y1" V 2904 2231 50  0000 L CNN
+F 1 "16MHz" V 2995 2231 50  0000 L CNN
+F 2 "Crystal:Resonator-2Pin_W8.0mm_H3.5mm" H 2950 2100 50  0001 C CNN
+F 3 "~" H 2950 2100 50  0001 C CNN
+	1    2950 2100
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 6190C0F4
+P 3650 1950
+F 0 "C1" V 3400 1900 50  0000 C CNN
+F 1 "22pF" V 3489 1950 50  0000 C CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 3688 1800 50  0001 C CNN
+F 3 "~" H 3650 1950 50  0001 C CNN
+	1    3650 1950
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 6190B7C4
+P 3650 2250
+F 0 "C2" V 3500 2300 50  0000 C CNN
+F 1 "22pF" V 3400 2250 50  0000 C CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 3688 2100 50  0001 C CNN
+F 3 "~" H 3650 2250 50  0001 C CNN
+	1    3650 2250
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2400 2050 2750 2050
+Wire Wire Line
+	2750 2050 2750 1950
+Wire Wire Line
+	2750 1950 2950 1950
+Wire Wire Line
+	2400 2150 2750 2150
+Wire Wire Line
+	2750 2150 2750 2250
+Wire Wire Line
+	2750 2250 2950 2250
+Wire Wire Line
+	2950 1950 3500 1950
+Connection ~ 2950 1950
+Wire Wire Line
+	3500 2250 2950 2250
+Connection ~ 2950 2250
+$Comp
+L power:GND #PWR0102
+U 1 1 6191044F
+P 3800 2500
+F 0 "#PWR0102" H 3800 2250 50  0001 C CNN
+F 1 "GND" H 3805 2327 50  0000 C CNN
+F 2 "" H 3800 2500 50  0001 C CNN
+F 3 "" H 3800 2500 50  0001 C CNN
+	1    3800 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3800 1950 3800 2250
+Wire Wire Line
+	3800 2500 3800 2250
+Connection ~ 3800 2250
+$Comp
+L power:GND #PWR0103
+U 1 1 6191656C
+P 1800 4150
+F 0 "#PWR0103" H 1800 3900 50  0001 C CNN
+F 1 "GND" H 1805 3977 50  0000 C CNN
+F 2 "" H 1800 4150 50  0001 C CNN
+F 3 "" H 1800 4150 50  0001 C CNN
+	1    1800 4150
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	800  750  800  4600
+Wire Notes Line
+	800  4600 4250 4600
+Wire Notes Line
+	4250 4600 4250 750 
+Wire Notes Line
+	800  750  4250 750 
+Text Notes 3650 4450 0    118  ~ 24
+MCU
+$EndSCHEMATC
