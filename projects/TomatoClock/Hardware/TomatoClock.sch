@@ -128,12 +128,92 @@ F 3 "" H 1800 4150 50  0001 C CNN
 $EndComp
 Wire Notes Line
 	800  750  800  4600
-Wire Notes Line
-	800  4600 4250 4600
-Wire Notes Line
-	4250 4600 4250 750 
-Wire Notes Line
-	800  750  4250 750 
 Text Notes 3650 4450 0    118  ~ 24
 MCU
+$Comp
+L Connector:Conn_01x04_Male J2
+U 1 1 61928260
+P 5700 1400
+F 0 "J2" H 5672 1374 50  0000 R CNN
+F 1 "Screen" H 5672 1283 50  0000 R CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x04_P2.00mm_Vertical" H 5700 1400 50  0001 C CNN
+F 3 "~" H 5700 1400 50  0001 C CNN
+	1    5700 1400
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 6192D813
+P 5350 1200
+F 0 "#PWR?" H 5350 1050 50  0001 C CNN
+F 1 "+3V3" H 5365 1373 50  0000 C CNN
+F 2 "" H 5350 1200 50  0001 C CNN
+F 3 "" H 5350 1200 50  0001 C CNN
+	1    5350 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6192DD9D
+P 4900 1500
+F 0 "#PWR?" H 4900 1250 50  0001 C CNN
+F 1 "GND" H 4905 1327 50  0000 C CNN
+F 2 "" H 4900 1500 50  0001 C CNN
+F 3 "" H 4900 1500 50  0001 C CNN
+	1    4900 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 1200 5350 1300
+Wire Wire Line
+	5350 1300 5500 1300
+Wire Wire Line
+	5500 1400 4900 1400
+Wire Wire Line
+	4900 1400 4900 1500
+Text GLabel 5500 1500 0    39   Input ~ 0
+SDA
+Text GLabel 5500 1600 0    39   Input ~ 0
+SCL
+Wire Notes Line
+	2650 1550 2650 2750
+Wire Notes Line
+	2650 2750 4000 2750
+Wire Notes Line
+	4000 2750 4000 1550
+Wire Notes Line
+	4000 1550 2650 1550
+Text Notes 2700 2700 0    118  ~ 24
+Clock
+Text GLabel 2400 2750 2    39   Input ~ 0
+SDA
+Text GLabel 2400 2850 2    39   Input ~ 0
+SCL
+Wire Notes Line
+	800  4600 4550 4600
+Wire Notes Line
+	4550 750  4550 4600
+Wire Notes Line
+	800  750  4550 750 
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J1
+U 1 1 6195336E
+P 3650 3800
+F 0 "J1" H 3700 4117 50  0000 C CNN
+F 1 "ICSP" H 3700 4026 50  0000 C CNN
+F 2 "" H 3650 3800 50  0001 C CNN
+F 3 "~" H 3650 3800 50  0001 C CNN
+	1    3650 3800
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	4650 750  4650 3500
+Wire Notes Line
+	4650 3500 8000 3500
+Wire Notes Line
+	8000 3500 8000 750 
+Wire Notes Line
+	8000 750  4650 750 
+Text Notes 6900 3400 0    118  ~ 24
+Peripherals
 $EndSCHEMATC
