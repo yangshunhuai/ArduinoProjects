@@ -7,6 +7,8 @@
   
   由于本项目较大，单独设仓库存放。
 
+* [TomatoClock](https://github.com/yangshunhuai/ArduinoProjects/tree/main/projects/TomatoClock)
+
 ## 鸽了的项目
 
 ![](./image-res/pigeon.png)
