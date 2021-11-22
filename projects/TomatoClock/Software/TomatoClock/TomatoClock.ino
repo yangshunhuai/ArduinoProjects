@@ -1,15 +1,15 @@
-#include <LiquidCrystal_I2C.h>
+#include <U8g2lib.h>
 #include <OneButton.h>
 #include "tones.h"
 
-#define LCD_I2C_ADDR 0x27
-#define BTNPIN 8
-#define BUZZER 9
-#define POTPIN A0
-#define US_TRIG 13
-#define US_ECHO 12
+#define BTNLEFT 2
+#define BTNENTER 3
+#define BTNRIGHT 4
+#define BUZZER 10
+#define US_TRIG 6
+#define US_ECHO 7
 
-LiquidCrystal_I2C lcd(LCD_I2C_ADDR, 16, 2);
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 OneButton btn(BTNPIN, false);
 
 const char pauseicon[] = {0x00, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x00};
@@ -19,22 +19,8 @@ void setup() {
   pinMode(BUZZER, OUTPUT);
   pinMode(US_TRIG, OUTPUT);
   pinMode(US_ECHO, INPUT);
-  lcd.init();
-  lcd.backlight();
-  lcd.createChar(0, pauseicon);
-  lcd.createChar(1, resumeicon);
-  lcd.setCursor(2, 0);
-  lcd.print("Tomato Clock");
-  lcd.setCursor(1, 1);
-  lcd.print("By yangshunhuai");
-  delay(1000);
-  lcd.clear();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  lcd.setCursor(4, 0);
-  lcd.print("Working");
-  lcd.setCursor(15, 0);
-  lcd.write(byte(0));
 }
