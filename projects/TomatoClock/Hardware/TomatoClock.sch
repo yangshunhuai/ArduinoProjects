@@ -394,7 +394,7 @@ F 3 "" H 4900 2700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 5100 2400 0    39   Input ~ 0
-BZR
+BUZZER
 $Comp
 L Connector:Conn_01x06_Female J5
 U 1 1 619E61E1
@@ -483,7 +483,7 @@ U 1 1 619F84CA
 P 7250 1950
 F 0 "S2" H 7350 2200 50  0000 C CNN
 F 1 "Middle" H 7400 2100 50  0000 C CNN
-F 2 "" H 7250 2150 50  0001 C CNN
+F 2 "Button_Switch_THT:SW_PUSH_6mm_H4.3mm" H 7250 2150 50  0001 C CNN
 F 3 "~" H 7250 2150 50  0001 C CNN
 	1    7250 1950
 	1    0    0    -1  
@@ -532,7 +532,7 @@ U 1 1 61A04CF4
 P 6700 2350
 F 0 "S3" H 6800 2600 50  0000 C CNN
 F 1 "Middle" H 6850 2500 50  0000 C CNN
-F 2 "" H 6700 2550 50  0001 C CNN
+F 2 "Button_Switch_THT:SW_PUSH_6mm_H4.3mm" H 6700 2550 50  0001 C CNN
 F 3 "~" H 6700 2550 50  0001 C CNN
 	1    6700 2350
 	1    0    0    -1  
@@ -575,6 +575,26 @@ BTNRIGHT
 Wire Wire Line
 	7000 2350 6900 2350
 Connection ~ 6900 2350
-Text GLabel 2200 3450 2    39   Output ~ 0
-BTN
+Text GLabel 2200 3450 2    39   Input ~ 0
+BTNENTER
+Text GLabel 2200 3550 2    39   Input ~ 0
+BTNRIGHT
+Text GLabel 2200 3650 2    39   Output ~ 0
+US_TRIG
+Text GLabel 2200 3750 2    39   Input ~ 0
+US_ECHO
+Text GLabel 2200 3850 2    39   Input ~ 0
+BT_TX
+Text GLabel 2200 1450 2    39   Output ~ 0
+BT_RX
+Text GLabel 2200 1650 2    39   Output ~ 0
+BUZZER
+Text GLabel 2200 1550 2    39   Output ~ 0
+PWM_SIGNAL
+Text GLabel 7000 1150 0    39   Input ~ 0
+BT_RX
+Text GLabel 7000 1250 0    39   Output ~ 0
+BT_TX
+NoConn ~ 7000 1050
+NoConn ~ 7000 1550
 $EndSCHEMATC

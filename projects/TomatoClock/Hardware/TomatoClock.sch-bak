@@ -575,4 +575,6 @@ BTNRIGHT
 Wire Wire Line
 	7000 2350 6900 2350
 Connection ~ 6900 2350
+Text GLabel 2200 3450 2    39   Output ~ 0
+BTN
 $EndSCHEMATC
