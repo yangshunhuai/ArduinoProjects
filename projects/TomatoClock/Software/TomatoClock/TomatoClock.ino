@@ -8,7 +8,8 @@
 #include <U8g2lib.h>
 #include <OneButton.h>
 #include <SoftwareSerial.h>
-#include <DS1302.h>
+#include <ThreeWire.h>
+#include <RtcDS1302.h>
 #include "tones.h"
 
 // Device pins
@@ -23,15 +24,16 @@
 #define DS1302_CLK A0
 #define DS1302_DAT A1
 #define DS1302_RST A2
-String AT_NAME =   "TomatoClock";
+String BT_NAME =   "TomatoClock";
 
 // Devices
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 OneButton btnleft(BTNLEFT, false);
 OneButton btnenter(BTNENTER, false);
 OneButton btnright(BTNRIGHT, false);
+ThreeWire mywire(DS1302_DAT, DS1302_CLK, DS1302_RST);
+RtcDS1302<ThreeWire> rtc(mywire);
 SoftwareSerial btser(BT_SER_TX, BT_SER_RX);
-DS1302 rtc(DS1302_RST, DS1302_DAT, DS1302_CLK);
 
 void setup() {
   // Configure pins
@@ -40,9 +42,9 @@ void setup() {
   pinMode(US_ECHO, INPUT);
   // Configure devices
   u8g2.begin();
+  rtc.Begin();
   btser.begin(9600);
-  String AT_cmd = "AT+NAME";
-  btser.print(AT_cmd += AT_NAME);
+  btser.print("AT+NAME" + BT_NAME + "\r\n");
 }
 
 void loop() {
